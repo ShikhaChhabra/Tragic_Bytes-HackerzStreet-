@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* Your existing CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:bisque;
+        }
+
+        .container {
+            margin-top: 200px;
+            display: flex;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .main-content {
+            flex: 2;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .classes-list {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+            background-color: bisque;
+        }
+
+        .class-item {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+
+        .class-item:hover {
+            background-color: #e9e9e980;
+        }
+
+        .subjects-list {
+            display: none;
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .subject-item {
+            background-color: #f1f1f1;
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .take-attendance-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .take-attendance-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>WELCOME TEACHER!</h1>
+    <div class="container">
+        <div class="sidebar">
+            <h2>User Profile</h2>
+            <p id="p1">Name: Prakash Sharma</p>
+            <p id="p2">Email: prakash_sharma@gmail.com</p>
+            <button onclick="logout()" class="logout-button">Log Out</button>
+        </div>
+        <div class="main-content">
+            <h1>Your Classes</h1>
+            <ul class="classes-list">
+                <li class="class-item" onclick="toggleSubjects('class1')">
+                    Section 4-E
+                    <ul id="class1" class="subjects-list">
+                        <li class="subject-item">Web Technologies 
+                            <button class="take-attendance-button" onclick="takeAttendance('class1', 'subject1')">Take Attendance</button>
+                            <button class="view-attendance-button" onclick="viewAttendance('class1', 'subject1')">View Attendance</button>
+                        </li>
+                        <li class="subject-item">Web Technologies Lab
+                            <button class="take-attendance-button" onclick="takeAttendance('class1', 'subject2')">Take Attendance</button>
+                            <button class="view-attendance-button" onclick="viewAttendance('class1', 'subject2')">View Attendance</button>
+                        </li>
+                    </ul>
+                </li>
+                <li class="class-item" onclick="toggleSubjects('class2')">
+                    Section 2-F
+                    <ul id="class2" class="subjects-list">
+                        <li class="subject-item">PSUC
+                            <button class="take-attendance-button" onclick="takeAttendance('class2', 'subject1')">Take Attendance</button>
+                            <button class="view-attendance-button" onclick="viewAttendance('class2', 'subject1')">View Attendance</button>
+                        </li>
+                        <li class="subject-item">PSUC Lab
+                            <button class="take-attendance-button" onclick="takeAttendance('class2', 'subject2')">Take Attendance</button>
+                            <button class="view-attendance-button" onclick="viewAttendance('class2', 'subject2')">View Attendance</button>
+                        </li>
+                    </ul>
+                </li>
+                <li class="class-item" onclick="toggleSubjects('class3')">
+                    Section 4-G
+                    <ul id="class3" class="subjects-list">
+                        <li class="subject-item">RDBMS
+                            <button class="take-attendance-button" onclick="takeAttendance('class3', 'subject1')">Take Attendance</button>
+                            <button class="view-attendance-button" onclick="viewAttendance('class3', 'subject1')">View Attendance</button>
+                        </li>
+                        <li class="subject-item">RDBMS Lab
+                            <button class="take-attendance-button" onclick="takeAttendance('class3', 'subject2')">Take Attendance</button>
+                            <button class="view-attendance-button" onclick="viewAttendance('class3', 'subject2')">View Attendance</button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function toggleSubjects(classId) {
+            var subjectsList = document.getElementById(classId);
+            if (subjectsList.style.display === "none") {
+                subjectsList.style.display = "block";
+            } else {
+                subjectsList.style.display = "none";
+            }
+        }
+
+        function takeAttendance(classId, subject) {
+            window.location.href = "attendance.html?class=" + classId + "&subject=" + subject;
+        }
+
+        function viewAttendance(classId, subject) {
+            window.location.href = "view_attendance.html?class=" + classId + "&subject=" + subject;
+        }
+
+        function logout() {
+            window.location.href = "one.html"; // Replace "index.html" with the actual URL of your first page
+        }
+    </script>
+</body>
+</html>
